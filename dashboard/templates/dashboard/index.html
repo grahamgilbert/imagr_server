@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block script %}
+
+
+{% endblock %}
+
+{% block nav %}
+
+{% endblock %}
+{% block content %}
+
+<div class="row">
+
+    <div class="col-md-3">
+        <a href="{% url 'new_computers_today' %}"><div class="info-box bg-gray">
+          <span class="info-box-icon bg-gray"><i class="fa fa-laptop"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">New Today</span>
+            <span class="info-box-number">{{ new_today|length }}</span>
+          </div><!-- /.info-box-content -->
+      </div><!-- /.info-box --></a>
+    </div><!-- /.col-md-3 -->
+
+    <div class="col-md-3">
+        <a href="{% url 'in_progress' %}">
+        <div class="info-box bg-blue">
+          <span class="info-box-icon bg-blue"><i class="fa fa-spinner"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">In Progress</span>
+            <span class="info-box-number">{{ in_progress|length }}</span>
+          </div><!-- /.info-box-content -->
+      </div><!-- /.info-box --></a>
+    </div><!-- /.col-md-3 -->
+
+    <div class="col-md-3">
+        <a href="{% url 'completed' %}">
+        <div class="info-box bg-green">
+          <span class="info-box-icon bg-green"><i class="fa fa-desktop"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Completed</span>
+            <span class="info-box-number">{{ completed|length }}</span>
+          </div><!-- /.info-box-content -->
+      </div><!-- /.info-box --></a>
+    </div><!-- /.col-md-3 -->
+
+    <div class="col-md-3">
+        <a href="{% url 'error' %}">
+        <div class="info-box bg-red">
+          <span class="info-box-icon bg-red"><i class="fa fa-exclamation-triangle"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Errors</span>
+            <span class="info-box-number">{{ errors|length }}</span>
+          </div><!-- /.info-box-content -->
+      </div><!-- /.info-box --></a>
+    </div><!-- /.col-md-3 -->
+</div>
+
+{% endblock %}

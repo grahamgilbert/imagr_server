@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block script %}
+<script type="text/javascript">
+      $(function () {
+        $('#dataTable').dataTable({
+          "bPaginate": true,
+          "bLengthChange": false,
+          "bFilter": true,
+          "bSort": true,
+          "bInfo": true,
+          "bAutoWidth": false,
+          "aaSorting": [[0, 'desc']],
+        });
+      });
+    </script>
+
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Reports</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <table id="dataTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for report in reports %}
+                    <tr>
+                        <td>{{report.date_added}}</td>
+                        <td>{{report.message}}</td>
+                        {% if report.status == 'success' %}
+                        <td>Complete</td>
+                        {% elif report.status == 'success'%}
+                        <td>Error</td>
+                        {% elif report.status == 'in_progress'%}
+                        <td>In Progress</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div><!-- /.box-body -->
+    </div><!-- /.box -->
+</div>
+
+<div class="col-md-4">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Machine</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <table class="table">
+                <tr><th>Serial Number</th><td>{{ computer.serial_number}}</td></tr>
+                <tr><th>Current Status</th>
+                    {% if computer.current_status == 'success' %}
+                    <td>Complete</td>
+                    {% elif computer.current_status == 'success'%}
+                    <td>Error</td>
+                    {% elif computer.current_status == 'in_progress'%}
+                    <td>In Progress</td>
+                    {% endif %}</tr>
+                    <tr><th>First Seen</th><td>{{ computer.date_added}}</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

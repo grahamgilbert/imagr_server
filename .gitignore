@@ -1,3 +1,4 @@
 imagr_server/settings.py
 *.pyc
 *.sqlite3
+.DS_Store

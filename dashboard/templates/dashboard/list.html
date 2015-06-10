@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block script %}
+<script type="text/javascript">
+      $(function () {
+        $('#dataTable').dataTable({
+          "bPaginate": true,
+          "bLengthChange": false,
+          "bFilter": true,
+          "bSort": true,
+          "bInfo": true,
+          "bAutoWidth": false
+        });
+      });
+    </script>
+
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">{{list_title}}</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <table id="dataTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Serial Number</th>
+                        <th>First Seen</th>
+                        <th>Last Seen</th>
+                        <th>Current Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for computer in computers %}
+                    <tr>
+                        <td><a href="{% url 'info' computer.serial_number %}">{{computer.serial_number}}</a></td>
+                        <td>{{computer.date_added}}</td>
+                        <td>{{computer.last_seen}}</td>
+                        <td>
+                        {% if computer.current_status == 'success' %}
+                        Complete
+                        {% elif computer.current_status == 'success'%}
+                        Error
+                        {% elif computer.current_status == 'in_progress'%}
+                        In Progress
+                        {% endif %}</td>
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div><!-- /.box-body -->
+    </div><!-- /.box -->
+</div>
+</div>
+
+{% endblock %}
