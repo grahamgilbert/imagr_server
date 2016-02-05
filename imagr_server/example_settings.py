@@ -116,3 +116,9 @@ STATICFILES_DIRS = (
 
 LOGIN_URL='/login/'
 LOGIN_REDIRECT_URL='/'
+
+# slack notifications
+SLACK_NOTIFY=True
+SLACK_WEBHOOK_URL='https://slackwebhook'
+SLACK_CHANNEL='macops'
+SLACK_BOT_NAME='imagr'
