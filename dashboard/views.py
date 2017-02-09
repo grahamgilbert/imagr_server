@@ -23,7 +23,7 @@ def index(request):
         if computer.current_status == 'in_progress':
             in_progress.append(computer)
         elif computer.current_status == 'error':
-            error.append(computer)
+            errors.append(computer)
         elif computer.current_status == 'success':
             completed.append(computer)
     c = {'new_today':new_today, 'in_progress':in_progress, 'errors':errors, 'completed':completed}
